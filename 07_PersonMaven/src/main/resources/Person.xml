@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.myperson.Person">
+ <insert id="personInsert" parameterType="com.myperson.model.PersonVO">
+ 	insert into person(id, name, password, gender, job) 
+ 	values(#{id}, #{name}, #{password}, #{gender}, #{job})
+ </insert>
+ 
+ <select id="personList" resultType="com.myperson.model.PersonVO">
+ 	select * from person 	
+ 	<where>
+ 		<if test='word!=null and field=="name"'>
+ 			name like '%'||#{word}||'%'
+ 		</if>
+ 		 <if test='word!=null and field=="id"'>
+ 			id like '%'||#{word}||'%'
+ 		</if>
+ 	</where> 
+ </select>
+ 
+ <select id="personView" parameterType="String" resultType="com.myperson.model.PersonVO">
+ 	select * from person where id=#{id}
+ </select>
+ 
+ <update id="personUpdate" parameterType="com.myperson.model.PersonVO">
+ 	update person set name=#{name}, password=#{password}, gender=#{gender}, job=#{job} where id=#{id}
+ </update>
+ 
+ <delete id="personDelete" parameterType="String">
+ 	delete from person where id=#{id}
+ </delete>
+ 
+ <select id="personCount" resultType="Integer">
+ 	select count(*) from person
+ </select>
+ </mapper>
