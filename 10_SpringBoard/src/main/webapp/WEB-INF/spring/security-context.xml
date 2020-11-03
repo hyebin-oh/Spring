@@ -18,6 +18,8 @@ class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 	access="hasRole('ROLE_ADMIN')"/>
 	
 	<security:form-login login-page="/customLogin"/><!-- 로그인 페이지 주소 -->
+	
+	<security:logout logout-url="/customLogout" invalidate-session="true"/><!-- 로그아웃(post 방식) -->
 </security:http>
 
 <security:authentication-manager>

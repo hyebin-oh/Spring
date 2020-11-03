@@ -27,7 +27,8 @@ public class CommentServiceImpl implements CommentService{
 	@Transactional //두개의 작업을 하나로 묶어서 처리
 	@Override
 	public void insert(CommentDTO comment) {
-		bmapper.updateReplyCnt(comment.getBnum(),1); //댓글수 증가될때마다 replycnt 값 1증가
+		//댓글수 증가될때마다 replycnt 값 1증가
+		bmapper.updateReplyCnt(comment.getBnum(),1); 
 		cmapper.insert(comment);
 	}
 	

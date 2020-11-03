@@ -43,12 +43,10 @@
 
 <div id="area"></div>
 
-<c:if test="${sessionScope.sessionDto!=null }">
 	<div align="center">
 		<textarea rows="5" cols="50" id="msg" name="msg"></textarea>
 		<input type="button" value="댓글쓰기" id="comment">
 	</div>
-</c:if>
 
 <script>
 	var init = function(){
@@ -107,8 +105,9 @@
 			contentType:'application/json;charset=utf-8',
 			data:JSON.stringify(data)
 		}).done(function(){
-			alert("등록완료")
-			init();
+				alert("등록완료")
+				init();
+			
 		}).fail(function(error){
 			alert("error");
 		})
