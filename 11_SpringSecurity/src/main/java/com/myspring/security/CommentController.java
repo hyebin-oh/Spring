@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.myspring.dto.CommentDTO;
 import com.myspring.service.CommentService;
 
-@RequestMapping("/reply/")
+@RequestMapping("/reply/*")
 @RestController
 public class CommentController {
 	
 	@Autowired
 	private CommentService cService;
 	
-	@PostMapping("commentInsert")
+	@PostMapping("/commentInsert")
 	public String cInsert(@RequestBody CommentDTO comment) {
 		cService.commentInsert(comment);
 		return "success";

@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1>게시판 글쓰기</h1>
-	
+<a href="/security/board/list">게시글보기</a>
 <form action="/security/board/insert" method="post">
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	<input type="text" size="100" name="writer" id="username"

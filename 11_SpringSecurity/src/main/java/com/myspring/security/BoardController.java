@@ -46,10 +46,21 @@ public class BoardController {
 	}
 	
 	@GetMapping("update")
-	@Secured("ROLE_MEMBER")
 	public void updateForm(Model model, int num) {
 		BoardDTO board = bService.findByNum(num);
 		model.addAttribute("board", board);
+	}
+	
+	@PostMapping("update")
+	public String update(BoardDTO board) {
+		bService.update(board);
+		return "redirect:list";
+	}
+	
+	@GetMapping("delete")
+	public String delete(int num) {
+		bService.delete(num);
+		return "redirect:list";
 	}
 
 }

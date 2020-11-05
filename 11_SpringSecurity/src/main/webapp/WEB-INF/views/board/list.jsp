@@ -19,7 +19,6 @@
         <th>내용</th>
         <th>작성일</th>
         <th>조회수</th>
-        <th>삭제</th>
       </tr>
     </thead>
     <tbody>
@@ -31,7 +30,6 @@
         <td>${list.content }</td>
         <td>${list.regdate }</td>
         <td>${list.hitcount }</td>
-        <td><a href="boardDelete?num=${list.num}">삭제</a></td>
       </tr>
      </c:forEach> 
     </tbody>

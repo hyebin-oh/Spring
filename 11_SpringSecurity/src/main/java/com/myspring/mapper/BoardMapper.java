@@ -2,8 +2,10 @@ package com.myspring.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.myspring.dto.BoardDTO;
 
@@ -19,4 +21,10 @@ public interface BoardMapper {
 	
 	@Select("select * from springboard where num=#{num}")
 	public BoardDTO view(int num);
+	
+	@Update("update springboard set title=#{title}, content=#{content}, writer=#{writer}, password=#{password} where num=#{num}")
+	public int update(BoardDTO board);
+	
+	@Delete("delete from springboard where num=#{num}")
+	public void delete(int num);
 }

@@ -7,14 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <h1>${board.writer } 게시글 보기</h1>
 	
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-	<input type="hidden" size="100" id="username"
+	<input type="hidden" size="100" id="username" name="username"
 	value='<sec:authentication property="principal.username"/>'>
-	<input type="hidden" name ="num" value="${board.num }" readonly >
+	<input type="hidden" name ="num" id="num" value="${board.num }" >
   <div>
     <label for="writer">작성자:</label>
     <input type="text"  id="password" name="writer" value="${board.writer}" readonly>
@@ -39,8 +40,8 @@
    <sec:authentication property="principal" var="user"/>
    <sec:authorize access="isAuthenticated()">
     <c:if test="${board.writer eq user.username}">
-     <input type="button" value="수정하기" onclick="update?num=${board.num }">
-    <input type="button" value="삭제하기" onclick="delete?num=${board.num }">
+     <input type="button" value="수정하기" onclick="location.href='/security/board/update?num=${board.num }'">
+    <input type="button" value="삭제하기" onclick="location.href='/security/board/delete?num=${board.num }'">
     </c:if>
    </sec:authorize>
   </div>
@@ -66,20 +67,20 @@
   
 	$("#commentInsert").click(function(){
 		var data={
-			"bnum":$("#num").val(),
-			"content":$("#comment").val()
-			"userid":$("#username").val()
+			bnum:$("#num").val(),
+			content:$("#comment").val(),
+			userid:$("#username").val()
 		}
 
 		$.ajax({
 			type:"post",
-			url:"board/reply/commentInsert",
+			url:"/security/reply/commentInsert",
 			contentType:'application/json;charset=utf-8',
 			data:JSON.stringify(data)
 		})
-		.done(function(resp){
+		.done(function(){
 			
-			alert(resp);
+			alert("성공");
 		})
 		.fail(function(){
 			alert("error");

@@ -10,6 +10,7 @@
 </head>
 <body>
 <h1>${board.writer } 게시글 보기</h1>
+	<form action="/security/board/update" method="post">
 	
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	<input type="hidden" size="100" id="username"
@@ -36,39 +37,12 @@
   </div> 
   
   <div>
-  	<input type="submit" value="수정하기" onclick="update?num=${board.num }">
+  	<input type="submit" value="수정하기">
   </div>
+</form>
   <br>
-  
-  <div id="commentArea"></div>
 
-  <div>
-	<textarea rows="5" cols="40" name="comment" id="comment"></textarea>	
-  	<input type="button" id="commentInsert" value="댓글등록">
-  </div>
-  
-  <script>
-	$("#commentInsert").click(function(){
-		var data={
-			"bnum":$("#num").val(),
-			"content":$("#comment").val()
-		}
 
-		$.ajax({
-			type:"post",
-			url:"board/reply/commentInsert",
-			contentType:'application/json;charset=utf-8',
-			data:JSON.stringify(data)
-		})
-		.done(function(){
-			alert("등록완료");
-		})
-		.fail(function(){
-			alert("error");
-		})
-		
-	})
-  </script>
    
 </body>
 </html>
